@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "EnvironmentValidator (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "EnvironmentValidator (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

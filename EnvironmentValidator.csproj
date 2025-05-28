@@ -1,0 +1,109 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+		<RootNamespace>EnvironmentValidator</RootNamespace>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<Platforms>x86;x64;ARM64</Platforms>
+		<RuntimeIdentifiers Condition="$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)')) &gt;= 8">win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+		<RuntimeIdentifiers Condition="$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)')) &lt; 8">win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+		<PublishProfile>win-$(Platform).pubxml</PublishProfile>
+		<UseWinUI>true</UseWinUI>
+		<EnableMsixTooling>true</EnableMsixTooling>
+		<DefaultLanguage>pt-BR</DefaultLanguage>
+		<UseWPF>False</UseWPF>
+
+		<WindowsPackageType>None</WindowsPackageType>
+		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="ResultView.xaml" />
+	</ItemGroup>
+
+
+
+	<ItemGroup>
+		<Content Include="Assets\SplashScreen.scale-200.png" />
+		<Content Include="Assets\LockScreenLogo.scale-200.png" />
+		<Content Include="Assets\Square150x150Logo.scale-200.png" />
+		<Content Include="Assets\Square44x44Logo.scale-200.png" />
+		<Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+		<Content Include="Assets\Wide310x150Logo.scale-200.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ClosedXML" Version="0.102.3" />
+		<PackageReference Include="DinkToPdf" Version="1.0.8" />
+		<PackageReference Include="HtmlRenderer.PdfSharp" Version="1.5.0.6" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240607001" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="PDFsharp" Version="6.1.1" />
+		<PackageReference Include="PdfSharpCore" Version="1.3.65" />
+		<PackageReference Include="Polly" Version="8.4.2" />
+		<PackageReference Include="PuppeteerSharp" Version="19.0.1" />
+		<PackageReference Include="RestSharp" Version="111.3.0" />
+		<PackageReference Include="Serilog" Version="4.0.0" />
+		<PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+		<Manifest Include="$(ApplicationManifest)" />
+	</ItemGroup>
+
+	<!--
+    Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+    Tools extension to be activated for this project even if the Windows App SDK Nuget
+    package has not yet been restored.
+  -->
+	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+		<ProjectCapability Include="Msix" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Update="Assets\BadgeLogo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Assets\SplashScreen.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Assets\Square150x150Logo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Assets\Square310x310Logo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Assets\Square44x44Logo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Assets\StoreLogo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Assets\Wide310x150Logo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="ResultView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+
+	<!--
+    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
+    Explorer "Package and Publish" context menu entry to be enabled for this project even if
+    the Windows App SDK Nuget package has not yet been restored.
+  -->
+	<PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+		<HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+	</PropertyGroup>
+</Project>

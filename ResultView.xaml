@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="EnvironmentValidator.ResultView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EnvironmentValidator"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer VerticalScrollBarVisibility="Visible" >
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="> Workplace to Viva Now - Ferramenta de Análise" FontSize="36" FontWeight="Bold" Margin="20,30,0,20"/>
+            <Border BorderBrush="Gray" BorderThickness="0,4,0,0" Width="2048" Margin="0,100,0,20"/>
+            <ProgressBar Grid.Row="1" IsIndeterminate="False" Minimum="0" Maximum="100" Value="100" Height="50" Width="750" HorizontalAlignment="left" VerticalAlignment="Center" Margin="190,0,0,20"/>
+
+
+            <StackPanel Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="200,10,0,0">
+                <TextBlock Text="Essas são as informações do seu Workplace." FontSize="36" FontWeight="Bold" Margin="0,0,0,20"/>
+            </StackPanel>
+
+            <Grid Grid.Row="3" Width="900" HorizontalAlignment="Left" Margin="120,10,200,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                    <FontIcon Glyph="&#xE77B;" FontSize="36" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtUserCount" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Usuários" FontSize="16" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                    <FontIcon Glyph="&#xE95A;" FontSize="36" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtCommunityCount" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Comunidades" FontSize="16" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                    <FontIcon Glyph="&#xE8F3;" FontSize="36" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtPostsCount" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Posts" FontSize="16" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="3" HorizontalAlignment="Center">
+                    <FontIcon Glyph="&#xE8F1;" FontSize="36" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtknowledgeLibraryCount" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Bibliotecas do conhecimento" FontSize="16" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="4" HorizontalAlignment="Left" Margin="0,10,0,0">
+                <Border BorderBrush="Gray" BorderThickness="0,1,0,0" Width="2048" />
+            </Grid>
+
+            <Grid Grid.Row="5" Width="900" HorizontalAlignment="Left" Margin="120,40,200,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Imagem -->
+                <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Background="LightGray" Width="200" Height="200" CornerRadius="10" Margin="10">
+                    <Image Source="https://impsitecorporativo.blob.core.windows.net/files/2023/03/Logo-impar-normal.svg" Stretch="UniformToFill" />
+                </Border>
+
+                <!-- Título -->
+                <TextBlock Grid.Column="1" Grid.Row="0" x:Name="txtValueMigration" 
+                   TextWrapping="Wrap" FontSize="20" FontWeight="Bold" Margin="0,0,0,0"/>
+
+                <!-- Descrição -->
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="O pacote é selecionado com base no volume de informações e itens que precisam ser migrados." 
+                   TextWrapping="Wrap" FontSize="14" Margin="0,0,0,0"/>
+
+                <!-- Botões -->
+                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" Spacing="0">
+                    <Button Content="Falar com um consultor" Click="BtnConsultantButton" Padding="10,5" Margin="0,0"/>
+                    <!--<Button Content="Comprar" Click="BtnConsultantButton" Padding="10,5" Margin="10,0"/>-->
+
+                    <Button Click="BtnExportXlsx" Padding="10,5" Margin="10,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Exportar Informações" VerticalAlignment="Center"/>
+                            <FontIcon Glyph="&#xE78C;" FontSize="20" Margin="10,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="6" HorizontalAlignment="Left" Margin="0,10,0,0">
+                <Border BorderBrush="Gray" BorderThickness="0,1,0,0" Width="2048" />
+            </Grid>
+
+
+            <Grid Grid.Row="7" Margin="200,40,0,0">
+                <TextBlock Grid.Column="0" Text="Comunidades:" FontSize="20" FontWeight="Bold"/>
+                
+
+                <!-- Contêiner para a tabela dinâmica -->
+                <ScrollViewer VerticalScrollBarVisibility="Visible" Margin="0,40,0,20">
+                    <Grid x:Name="DynamicTableGrid" HorizontalAlignment="Left" Width="900"/>
+                </ScrollViewer>
+            </Grid>
+
+           
+        </Grid>
+    </ScrollViewer>
+</Window>
