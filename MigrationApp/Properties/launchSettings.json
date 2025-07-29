@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MigrationApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "MigrationApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

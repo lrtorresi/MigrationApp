@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="MigrationApp.KnowledgeLibraryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MigrationApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Ímpar - Migrador">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Indicador de loading -->
+        <StackPanel x:Name="LoadingPanel" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,30,0,0" Visibility="Collapsed">
+            <TextBlock Text="Buscando Bibliotecas de Conhecimento, por favor aguarde..." FontSize="20" HorizontalAlignment="Center"/>
+            <ProgressBar IsIndeterminate="True" Width="300" Height="20" Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <!-- Indicador de loading -->
+        <StackPanel x:Name="LoadingMigrationPanel" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,30,0,0" Visibility="Collapsed">
+            <TextBlock Text="Migrando Bibliotecas de Conhecimento, por favor aguarde este processo pode demorar algumas horas..." FontSize="20" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+            <ProgressBar IsIndeterminate="True" Width="300" Height="20" Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <!-- Header -->
+        <StackPanel x:Name="ViewInitialPanel" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,30,0,0">
+            <Image Source="https://impsitecorporativo.blob.core.windows.net/files/2023/03/Logo-impar-normal.svg" Stretch="Fill" Width="150" />
+            <TextBlock Text="> Workplace to Viva Now - Ferramenta de Migração" FontSize="36" FontWeight="Bold" Margin="0,20,0,20"/>
+            <Border BorderBrush="Gray" BorderThickness="0,4,0,0" Width="2048" Margin="-100,0,0,0"/>
+            <ProgressBar Grid.Row="1" IsIndeterminate="False" Minimum="0" Maximum="100" Value="60" Height="50" Width="750" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="190,0,0,20"/>
+        </StackPanel>
+        <!-- FIM da Tela Header -->
+
+        <!-- Nova Tela com checkbox -->
+
+        <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Margin="20">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="checkBoxGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
+                    <TextBlock Text="Selecione as Bibliotecas de Conhecimento que serão migradas para o Viva Engage" FontSize="24" FontWeight="Bold" TextWrapping="Wrap"/>
+                    <StackPanel x:Name="OptionsPanel" Orientation="Vertical" Margin="0,20,0,0">
+                        <CheckBox x:Name="OptionsAllCheckBox" Content="Selecionar Todas" IsThreeState="True"
+                                  Checked="SelectAll_Checked" Unchecked="SelectAll_Unchecked"
+                                  Indeterminate="SelectAll_Indeterminate" />
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <!-- FIM Nova Tela com checkbox -->
+
+        <!-- Listagem dos nomes selecionados -->
+        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Margin="20">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="SelectedItemsPanel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
+                    <TextBlock Text="Bibliotecas de Conhecimento Selecionadas:" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+                    <ListBox x:Name="SelectedItemsListBox" />
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <!-- FIM da Listagem dos nomes selecionados -->
+
+        <!-- Botão de Continuar -->
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Total de comunidades selecionadas: 0" x:Name="SelectedCountTextBlock" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,10,0" />
+
+            <Button Grid.Column="1" x:Name="ContinueButton" Content="Continuar" Click="ContinueButton_Click" Width="150" Height="40" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        </Grid>
+        <!-- FIM do Botão de Continuar -->
+
+    </Grid>
+</Window>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="MigrationApp.ConfigurationsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MigrationApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Ímpar - Migrador">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="MainGrid">
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="NewInputForm">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Header -->
+            <StackPanel x:Name="ViewInitialPanel" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="left" VerticalAlignment="Center" Margin="20,30,0,0" >
+                <Image Source="https://impsitecorporativo.blob.core.windows.net/files/2023/03/Logo-impar-normal.svg" Stretch="Fill" Width="150" />
+                <TextBlock Text="> Workplace to Viva Now - Ferramenta de Migração" FontSize="36" FontWeight="Bold" Margin="0,20,0,20"/>
+                <Border BorderBrush="Gray" BorderThickness="0,4,0,0" Width="2048" Margin="-100,0,0,0"/>
+                <ProgressBar Grid.Row="1" IsIndeterminate="False" Minimum="0" Maximum="100" Value="20" Height="50" Width="750" HorizontalAlignment="left" VerticalAlignment="Center" Margin="190,0,0,20"/>
+
+                <TextBlock Text="Preencha as informações abaixo para continuar." FontSize="22" TextAlignment="Left" Margin="0,0,0,0" FontWeight="Bold"/>
+            </StackPanel>
+            <!-- FIM da Tela Header -->
+
+            <!-- Quadrado Esquerdo -->
+            <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Margin="10">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="LeftPanel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Meta Workplace" FontSize="24" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <Image Source="/Assets/meta.png" Stretch="Fill" Width="50" Height="50" Margin="50,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Margin="0,30,0,10">
+                            <TextBlock Text="Digite o Token gerado no Meta Workplace:"  Margin="0,0,0,10"/>
+                            <TextBox 
+                            Width="500" 
+                            Height="80" 
+                            x:Name="inputTokenWorkplace" 
+                            PlaceholderText="XXXXX-XXX-XXX-XXXX"
+                            AcceptsReturn="True" 
+                            TextWrapping="Wrap"/>
+                            <ProgressRing IsActive="True" x:Name="loadingStatus1" Visibility="Collapsed" Margin="10,0,0,0"/>
+                            <HyperlinkButton Content="* Clique aqui em caso de dúvidas" NavigateUri="https://pt-br.workplace.com/resources/tech/integrations/basics" />
+                        </StackPanel>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <!-- Quadrado Central -->
+            <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Margin="10">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="CentralPanel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
+
+                        <Grid>
+                            <!-- Definindo as linhas do grid -->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <!-- Primeira parte -->
+                                <RowDefinition Height="Auto" />
+                                <!-- Linha divisória -->
+                                <RowDefinition Height="*" />
+                                <!-- Segunda parte -->
+                            </Grid.RowDefinitions>
+
+                            <!-- Primeira parte do Grid -->
+                            <StackPanel Grid.Row="0" Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Microsoft Viva Engage" FontSize="24" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    <Image Source="/Assets/vivaengage.png" Stretch="Fill" Width="50" Height="50" Margin="50,0,0,0" VerticalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical" Margin="0,30,0,20">
+                                    <TextBlock Text="Digite o Token gerado no Microsoft Engage:" Margin="0,0,0,10"/>
+                                    <TextBox  Width="500" x:Name="inputTokenEngage" PlaceholderText="XXXXX-XXX-XXX-XXXX"/>
+                                    <ProgressRing IsActive="True" x:Name="loadingStatus2" Visibility="Collapsed" Margin="10,0,0,0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical" Margin="0,10,0,10">
+                                    <TextBlock Text="Digite o Cliente ID no Microsoft Engage:" Margin="0,0,0,10"/>
+                                    <TextBox Width="500" x:Name="inputClientId" PlaceholderText="XXXXX-XXX-XXX-XXXX"/>
+                                    <ProgressRing IsActive="True" x:Name="loadingStatus3" Visibility="Collapsed" Margin="10,0,0,0"/>
+                                    <HyperlinkButton Content="* Clique aqui em caso de dúvidas" NavigateUri="https://learn.microsoft.com/en-us/rest/api/yammer/app-registration" />
+                                </StackPanel>
+
+                            </StackPanel>
+
+
+
+                            <!-- Segunda parte do Grid -->
+                            <StackPanel Grid.Row="2" Orientation="Vertical">
+
+
+
+                            </StackPanel>
+                        </Grid>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+
+            <!-- Quadrado Direito -->
+            <Border Grid.Row="1" Grid.Column="2" BorderBrush="Gray" BorderThickness="1" Margin="10">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="RightPanel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
+
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="App Registration: Azure" FontSize="24" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <Image Source="/Assets/azure.png" Stretch="Fill" Width="50" Height="50" Margin="50,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Margin="0,10,0,10">
+                            <TextBlock Text="ID do locatário (Tenant ID):" Margin="0,0,0,10"/>
+                            <TextBox Width="500" x:Name="inputTenantIdAzure" PlaceholderText="XXXXX-XXX-XXX-XXXX"/>
+                            <ProgressRing IsActive="True" x:Name="loadingStatusOther" Visibility="Collapsed" Margin="10,0,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Margin="0,10,0,10">
+                            <TextBlock Text="ID do aplicativo (cliente):" Margin="0,0,0,10"/>
+                            <TextBox Width="500" x:Name="inputClientIdAzure" PlaceholderText="XXXXX-XXX-XXX-XXXX"/>
+                            <HyperlinkButton Content="* Clique aqui em caso de dúvidas" NavigateUri="https://learn.microsoft.com/pt-br/entra/identity-platform/quickstart-register-app?tabs=certificate" />
+                        </StackPanel>
+
+                        <!--<StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Microsoft 365: Login" FontSize="24" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <Image Source="/Assets/m365.png" Stretch="Fill" Width="50" Height="50" Margin="50,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>-->
+
+                        <!--<StackPanel Orientation="Vertical" Margin="0,30,0,20">
+                            <TextBlock Text="E-mail:" Margin="0,0,0,10"/>
+                            <TextBox  Width="500" x:Name="inputUsername" PlaceholderText="Digite seu e-mail"/>
+                            <ProgressRing IsActive="True"  Visibility="Collapsed" Margin="10,0,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Margin="0,10,0,10">
+                            <TextBlock Text="Senha:" Margin="0,0,0,10"/>
+                            <PasswordBox Width="500" PlaceholderText="Digite sua senha" x:Name="inputPassword"/>
+                            <ProgressRing IsActive="True" Visibility="Collapsed" Margin="10,0,0,0"/>
+                        </StackPanel>-->
+                        <!--<Button x:Name="SubmitAuthButton" Content="Login" Width="250" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,30,0,20" Click="SubmitAuthButton_Click"/>-->
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <!-- Botão de Continuar -->
+            <Grid Grid.Row="2" Grid.ColumnSpan="3" Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button 
+                    x:Name="SubmitButton" 
+                    Content="Continuar" 
+                    Width="250" 
+                    Height="40"  
+                    FontWeight="SemiBold"
+                    BorderBrush="#0078D7"
+                    BorderThickness="2"
+                    CornerRadius="8"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Padding="10,5" Click="SubmitButton_Click"
+                />     
+            </Grid>
+            <!-- FIM do Botão de Continuar -->
+        </Grid>
+
+        <!-- LoadingPanel fora da grid principal -->
+        <Grid x:Name="LoadingPanel" Background="#80000000" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Validando os dados, por favor aguarde..." FontSize="20" HorizontalAlignment="Center" Foreground="White"/>
+                <ProgressBar IsIndeterminate="True" Width="300" Height="20" Margin="0,10,0,0"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Botão Voltar fixo no canto inferior direito -->
+        <Grid x:Name="BackButtonPanel" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20">
+            <Button x:Name="BackButton"
+                Content="Voltar"
+                Width="150"
+                Height="40"
+                Click="BackButton_Click"
+                FontWeight="SemiBold"
+                BorderBrush="#0078D7"
+                BorderThickness="2"
+                CornerRadius="8"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Padding="10,5"
+            />
+        </Grid>
+
+    </Grid>
+</Window>
